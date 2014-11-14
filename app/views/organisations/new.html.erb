@@ -1,5 +1,6 @@
-<h1>New organisation</h1>
+<%- model_class = Organisation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => Organisation %></h1>
+</div>
+<%= render :partial => 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', organisations_path %>

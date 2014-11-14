@@ -1,6 +1,5 @@
-<h1>Editing organisation</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @organisation %> |
-<%= link_to 'Back', organisations_path %>
+<%- model_class = Organisation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => Organisation %></h1>
+</div>
+<%= render :partial => 'form' %>
