@@ -1,27 +1,38 @@
-<h1>Listing employments</h1>
-
-<table>
+<%- model_class = Employment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Employment %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Start</th>
-      <th>End</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:start) %></th>
+      <th><%= model_class.human_attribute_name(:end) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @employments.each do |employment| %>
       <tr>
+        <td><%= employment.id %></td>
         <td><%= employment.start %></td>
         <td><%= employment.end %></td>
-        <td><%= link_to 'Show', employment %></td>
-        <td><%= link_to 'Edit', edit_employment_path(employment) %></td>
-        <td><%= link_to 'Destroy', employment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l employment.created_at, format: :long %></td>
+        <td>
+          <%= link_to employment_path(employment), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to employment_path(employment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Employment', new_employment_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_employment_path,
+            :class => 'btn btn-primary' %>
