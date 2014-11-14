@@ -1,4 +1,5 @@
 ActiveAdmin.register Person do
+  permit_params :first_name, :last_name, :birth_date
 
 
   # See permitted parameters documentation:
