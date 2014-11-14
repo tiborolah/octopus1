@@ -1,4 +1,5 @@
 ActiveAdmin.register Employment do
+  permit_params :start, :end
 
 
   # See permitted parameters documentation:
